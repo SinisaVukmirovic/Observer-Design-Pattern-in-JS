@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Observer Design Pattern in JS</title>
+</head>
+<style>
+    body {
+        font-family: 'Tahoma', sans-serif;
+    }
+    .square {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        background-color: black;
+        color: white;
+        font-size: 250%;
+    }
+</style>
+<body>
+
+    <h1>Observer Design Pattern in JS</h1>
+    <h4>Open console to see all observers information</h4>
+    <hr>
+
+    <div class="square" id="elem-observer-1"></div>
+    <hr>
+
+    <button type="button" onclick="model.increment()">Increment</button>
+    
+
+    <script src="js/NumberModel.js"></script>
+    <script src="js/ElementObserver.js"></script>
+    <script src="js/ConsoleObserver.js"></script>
+    <script src="js/HistoryObserver.js"></script>
+    <script>
+        const model = new NumberModel();
+        const elemObs1 = new ElementObserver('elem-observer-1');
+        const consoleObs = new ConsoleObserver();
+        const historyObs = new HistoryObserver();
+
+        model.addObserver(elemObs1);
+        model.addObserver(consoleObs);
+        model.addObserver(historyObs);
+
+        model.notifyObservers();
+    </script>
+</body>
+</html>
